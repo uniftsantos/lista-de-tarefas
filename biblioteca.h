@@ -9,6 +9,7 @@ struct tarefas{
     int prioridade;
     char categoria[100];
     char descricao[300];
+    char status[100];
 };
 //Struct usada para o armazenamento das informacoes do programa. Trabalha com 3 variaveis, que guardam as informacoes do usuario de maneira organizada.
 
