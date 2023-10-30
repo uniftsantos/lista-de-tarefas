@@ -20,7 +20,7 @@ void le_valores(struct tarefas *armazena) {
 
     int var_prioridade;
     do{
-        printf("Digite a prioridade: ");
+        printf("Digite a prioridade de 1 a 10: ");
         scanf("%d", &var_prioridade);
 
         if(var_prioridade < 0 || var_prioridade > 10){
@@ -89,20 +89,88 @@ int deletar(int posicao, int cont, struct tarefas *t){
 //informa aproriadamente e retorna para o menu.
 
 
+
 void listar(int cont, struct tarefas *t){
-  if (cont == 0 ){
-    printf("Nao existem tarefas ainda.\n\n");
+    for(int x=0;x<cont;x++){
+        printf("Tarefa %d\n", x+1);
+        printf("Nivel de prioridade: %d\n",t[x].prioridade);
+        printf("Categoria: %s\n",t[x].categoria );
+        printf("Descricao: %s\n",t[x].descricao);
+      printf("Status: %s\n\n",t[x].status);
+    }
+}
+
+void alterar(int posicao,int cont, struct tarefas *t){
+
+  char *p_posicao, s_posicao[100];
+  fgets(s_posicao, sizeof(s_posicao), stdin);
+  posicao = strtol(s_posicao, &p_posicao, 10);
+  if(p_posicao == s_posicao || *p_posicao != '\n') {
+      printf("Input invalido. Entre somente com numeros inteiros.\n\n");
+      //return 1;
+  }
+  else if(posicao <= 0 && cont > 1 || posicao > cont && cont > 1){
+      printf("Numero invalido! Entre um numero entre 1 e %d\n\n", cont);
+      //return 1;
+  }
+  else if(cont == 0){
+      printf("Voce nao tem nenhuma tarefa registrada.\n\n");
+      //return 1;
+  }
+  else if(posicao <= 0 && cont == 1 || posicao > cont && cont == 1){
+      printf("Numero invalido! Voce tem somente 1 tarefa registrada.\n\n");
+      //return 1;
   }
   else{
-      printf("Lista de tarefas\n\n");
-      for(int x=0;x<cont;x++){
-          printf("Tarefa %d\n", x+1);
-          printf("Nivel de prioridade: %d\n",t[x].prioridade);
-          printf("Categoria: %s\n",t[x].categoria );
-          printf("Descricao: %s\n",t[x].descricao);
-          printf("Status: %s\n\n",t[x].status);
-      }
+    int campo = -1;
+    printf("Se você deseja alterar a prioridade clique 1, se deseja alterar a categoria clique 2, se deseja alterar a descricao clique 3, se deseja alterar o status digite 4.\n");
+    scanf("%d",&campo);
+    limpa_buffer();
+    if (campo==1){
+      int var_prioridade;
+      printf("Alterando tarefa.\n");
+      
+      do{
+          printf("Digite a prioridade de 1 a 10: ");
+          scanf("%d", &var_prioridade);
+  
+          if(var_prioridade < 0 || var_prioridade > 10){
+              printf("Input Invalido. Entre com um valor entre 0 e 10\n");
+          }
+      } while (var_prioridade < 0 || var_prioridade > 10);
+  
+      t[posicao - 1].prioridade = var_prioridade;
+      printf("Prioridade alterada com sucesso.\n\n");
+      //return 0;
+    }
+    else if(campo == 2){
+      printf("Digite a categoria: ");
+      scanf("%[^\n]",t[posicao - 1].categoria);
+      limpa_buffer();
+      printf("Categoria alterada com sucesso.\n\n");
+      //return 0;
+    }
+    else if (campo == 3){
+      printf("Digite a descricao: ");
+      scanf("%[^\n]",t[posicao - 1].descricao);
+      limpa_buffer();
+      printf("Descricao alterada com sucesso.\n\n");
+      //return 0;
+    }
+    else if(campo == 4){
+      printf("Digite o status: ");
+      scanf("%[^\n]",t[posicao - 1].status);
+      limpa_buffer();
+      printf("Status alterada com sucesso.\n\n");
+    }
+    else{
+      printf("opcao inválida!\n");
+    }
+    
+    
+    
   }
+  
 }
 
 
