@@ -62,7 +62,6 @@ int main() {
 
         else if (opcao == 3) {
             //printf("%d\n", tarefas.prioridade); (debug)
-            printf("Lista de tarefas\n\n");
             //printf("%d\n",cont); (debug)
             listar(cont, t);
         }
