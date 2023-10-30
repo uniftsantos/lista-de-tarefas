@@ -36,7 +36,9 @@ void le_valores(struct tarefas *armazena) {
     printf("Digite a descricao: ");
     scanf("%[^\n]", armazena->descricao);
     limpa_buffer();
-
+    printf("Digite o status da tarefa: ");
+    scanf("%[^\n]", armazena-> status);
+    limpa_buffer();
 }
 
 //Funcao que recebe as informacoes do usuario e as armazena na variavel apropriada. O programa recebe os inputs por meio da funcao "scanf" e a funcao "armazena" guarda as informacoes nas variaveis da struct. Utilizamos a
@@ -88,12 +90,19 @@ int deletar(int posicao, int cont, struct tarefas *t){
 
 
 void listar(int cont, struct tarefas *t){
-    for(int x=0;x<cont;x++){
-        printf("Tarefa %d\n", x+1);
-        printf("Nivel de prioridade: %d\n",t[x].prioridade);
-        printf("Categoria: %s\n",t[x].categoria );
-        printf("Descricao: %s\n\n",t[x].descricao);
-    }
+  if (cont == 0 ){
+    printf("Nao existem tarefas ainda.\n\n");
+  }
+  else{
+      printf("Lista de tarefas\n\n");
+      for(int x=0;x<cont;x++){
+          printf("Tarefa %d\n", x+1);
+          printf("Nivel de prioridade: %d\n",t[x].prioridade);
+          printf("Categoria: %s\n",t[x].categoria );
+          printf("Descricao: %s\n",t[x].descricao);
+          printf("Status: %s\n\n",t[x].status);
+      }
+  }
 }
 
 
@@ -110,7 +119,7 @@ int le_binario(struct tarefas *t) {
         return y;
 
     }
-    return 0;
+  return 0;
 }
 
 
