@@ -22,7 +22,8 @@ int main() {
         printf(" 2 - Deletar tarefa: \n");
         printf(" 3 - Listar tarefas: \n");
         printf(" 4 - Alterar tarefa: \n");
-        printf(" 5 - Sair\n");
+        printf(" 5 - Filtra tarefa por prioridade: \n");
+        printf(" 6 - Sair\n");
         printf("Digite o numero da opcao que deseja usar: \n");
 
         //Funcao do menu de tarefas, roda em while infinito mostrando o menu para o usuario printando as funcoes disponiveis, ate o usuario optar por sair.
@@ -71,23 +72,27 @@ int main() {
 
         else if (opcao == 4){
           printf("Voce entrou na funcao alterar tarefas.\n\n");
-          printf("Entre o numero da tarefa que deseja alterar : ");
+          printf("Entre o numero da tarefa que deseja alterar : \n");
           alterar(posicao, cont, t);
-          
+
+        }
+        else if(opcao == 5){
+          printf("Voce entrou na funcao filtar tarefa por prioridade.\n");
+          printf("Entre o numero da prioridade que deseja alterar : \n");
+          filtra_prioridade(cont,t);
         }
 
-
-        else if (opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4 && opcao != 5 || p == s_opcao || *p != '\n') {
-            printf("Input invalido. Entre somente com valores inteiros entre 1 e 5.\n\n");
-        }
-          
-            //Print que informa o usuario que entrou com uma opcao nao disponivel pelo programa.
-
-        else if (opcao == 5) {
+        else if (opcao == 6) {
             escreve_binario(t, cont);
             printf("Saindo do programa");
             break;
         }
         //Print que escreve as informações em um arquivo binário (verificando se ele foi aberto com sucesso) e sai do programa.
+          
+        else  {
+          printf("Input invalido. Entre somente com valores inteiros entre 1 e 6.\n\n");
+        }
+  
+          //Print que informa o usuario que entrou com uma opcao nao disponivel pelo programa.
     }
 }

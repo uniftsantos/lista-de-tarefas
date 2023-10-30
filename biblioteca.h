@@ -33,5 +33,6 @@ void escreve_binario(struct tarefas *t, int cont);
 
 void alterar(int posicao,int cont, struct tarefas *t);
 
+void filtra_prioridade(int cont, struct tarefas *t);
 
 #endif //UNTITLED_BIBLIOTECA_H

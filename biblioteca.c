@@ -96,7 +96,7 @@ void listar(int cont, struct tarefas *t){
         printf("Nivel de prioridade: %d\n",t[x].prioridade);
         printf("Categoria: %s\n",t[x].categoria );
         printf("Descricao: %s\n",t[x].descricao);
-      printf("Status: %s\n\n",t[x].status);
+        printf("Status: %s\n\n",t[x].status);
     }
 }
 
@@ -129,16 +129,16 @@ void alterar(int posicao,int cont, struct tarefas *t){
     if (campo==1){
       int var_prioridade;
       printf("Alterando tarefa.\n");
-      
+
       do{
           printf("Digite a prioridade de 1 a 10: ");
           scanf("%d", &var_prioridade);
-  
+
           if(var_prioridade < 0 || var_prioridade > 10){
               printf("Input Invalido. Entre com um valor entre 0 e 10\n");
           }
       } while (var_prioridade < 0 || var_prioridade > 10);
-  
+
       t[posicao - 1].prioridade = var_prioridade;
       printf("Prioridade alterada com sucesso.\n\n");
       //return 0;
@@ -166,11 +166,47 @@ void alterar(int posicao,int cont, struct tarefas *t){
     else{
       printf("opcao inválida!\n");
     }
-    
-    
+
+
+
+  }
+
+}
+
+void filtra_prioridade(int cont, struct tarefas *t){
+  int var_prioridade,verifica =0;
+  printf("Digite a prioridade que voce deseja filtrar: ");
+  scanf("%d",&var_prioridade);
+  limpa_buffer();
+  printf("Filtrar tarefa em prioridade nota: %d\n\n",var_prioridade);
+  int erro=-1;
+  if(cont == 0){
+    printf("Nao ha tarefas registradas.\n\n");
+  }
+  else{
+  for(int i =0; i<cont;i++){
+    if(t[i].prioridade == var_prioridade){
+      verifica ++;
+      printf("Tarefa %d\n", i+1);
+      printf("Nivel de prioridade: %d\n",t[i].prioridade);
+      printf("Categoria: %s\n",t[i].categoria );
+      printf("Descricao: %s\n",t[i].descricao);
+      printf("Status: %s\n\n",t[i].status);
+    }
+    else if (i == cont -1 && verifica == 0 ){
+      erro =1;
+      
+    }
     
   }
+    if(erro == 1){
+      printf("nao existem tarefas com essa prioridade.\n\n");
+    }
   
+  
+    
+  }
+
 }
 
 
