@@ -31,5 +31,7 @@ int le_binario(struct tarefas *t);
 void escreve_binario(struct tarefas *t, int cont);
 //Declaracao da funcao que salva as informacoes registradas pelo usuario, escrevendo-as em um arquivo binario, que é lido pela funcao anterior quando o programa é iniciado. Uitliza como parametros as variaveis *t e cont.
 
+void alterar(int posicao,int cont, struct tarefas *t);
+
 
 #endif //UNTITLED_BIBLIOTECA_H
