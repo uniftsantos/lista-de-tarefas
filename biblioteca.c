@@ -19,14 +19,15 @@ void limpa_buffer(){
 void le_valores(struct tarefas *armazena) {
 
     int var_prioridade;
+    int var_status;
     do{
         printf("Digite a prioridade de 1 a 10: ");
         scanf("%d", &var_prioridade);
 
-        if(var_prioridade < 0 || var_prioridade > 10){
+        if(var_prioridade < 1 || var_prioridade > 10){
             printf("Input Invalido. Entre com um valor entre 0 e 10\n");
         }
-    } while (var_prioridade < 0 || var_prioridade > 10);
+    } while (var_prioridade < 1 || var_prioridade > 10);
 
     armazena->prioridade = var_prioridade;
     limpa_buffer();
@@ -36,9 +37,25 @@ void le_valores(struct tarefas *armazena) {
     printf("Digite a descricao: ");
     scanf("%[^\n]", armazena->descricao);
     limpa_buffer();
-    printf("Digite o status da tarefa: ");
-    scanf("%[^\n]", armazena-> status);
-    limpa_buffer();
+
+  
+  do {
+      printf("Escolha o status da tarefa:\n");
+      printf("Digite 1 para tarefa completa\n");
+      printf("Digite 2 para tarefa em andamento\n");
+      printf("Digite 3 para tarefa nao iniciada\n");
+      scanf("%d", &var_status);
+
+      if(var_status < 1 || var_status > 3) {
+          printf("Input inválido. Por favor, entre com um valor entre 1 e 3.\n");
+      }
+  } while (var_status < 1 || var_status > 3);
+  limpa_buffer();
+
+  armazena->status = var_status;
+  
+
+
 }
 
 //Funcao que recebe as informacoes do usuario e as armazena na variavel apropriada. O programa recebe os inputs por meio da funcao "scanf" e a funcao "armazena" guarda as informacoes nas variaveis da struct. Utilizamos a
@@ -91,17 +108,24 @@ int deletar(int posicao, int cont, struct tarefas *t){
 
 
 void listar(int cont, struct tarefas *t){
+  if(cont==0){
+    printf("Não há tarefas cadastradas.\n\n");
+  }
+  else{
+    printf("Lista de tarefas\n\n");
     for(int x=0;x<cont;x++){
         printf("Tarefa %d\n", x+1);
         printf("Nivel de prioridade: %d\n",t[x].prioridade);
         printf("Categoria: %s\n",t[x].categoria );
         printf("Descricao: %s\n",t[x].descricao);
-        printf("Status: %s\n\n",t[x].status);
+        printf("Status: %d\n\n",t[x].status);
     }
+  }
 }
 
 void alterar(int posicao,int cont, struct tarefas *t){
-
+  
+int var_status;
   char *p_posicao, s_posicao[100];
   fgets(s_posicao, sizeof(s_posicao), stdin);
   posicao = strtol(s_posicao, &p_posicao, 10);
@@ -127,7 +151,7 @@ void alterar(int posicao,int cont, struct tarefas *t){
     scanf("%d",&campo);
     limpa_buffer();
     if (campo==1){
-      int var_prioridade;
+      int var_prioridade,var_status;
       printf("Alterando tarefa.\n");
 
       do{
@@ -158,9 +182,23 @@ void alterar(int posicao,int cont, struct tarefas *t){
       //return 0;
     }
     else if(campo == 4){
-      printf("Digite o status: ");
-      scanf("%[^\n]",t[posicao - 1].status);
+      do {
+        printf("Escolha o status da tarefa:\n");
+        printf("Digite 1 para tarefa completa\n");
+        printf("Digite 2 para tarefa em andamento\n");
+        printf("Digite 3 para tarefa nao iniciada\n");
+        scanf("%d", &var_status);
+
+        if(var_status < 1 || var_status > 3) {
+            printf("Input inválido. Por favor, entre com um valor entre 1 e 3.\n");
+        }
+      } while (var_status < 1 || var_status > 3);
       limpa_buffer();
+
+      t[posicao-1].status = var_status;
+      //printf("Digite o status: ");
+      //scanf("%d",&t[posicao - 1].status);
+      //limpa_buffer();
       printf("Status alterada com sucesso.\n\n");
     }
     else{
@@ -191,22 +229,64 @@ void filtra_prioridade(int cont, struct tarefas *t){
       printf("Nivel de prioridade: %d\n",t[i].prioridade);
       printf("Categoria: %s\n",t[i].categoria );
       printf("Descricao: %s\n",t[i].descricao);
-      printf("Status: %s\n\n",t[i].status);
+      printf("Status: %d\n\n",t[i].status);
     }
     else if (i == cont -1 && verifica == 0 ){
       erro =1;
-      
+
     }
-    
+
   }
     if(erro == 1){
       printf("nao existem tarefas com essa prioridade.\n\n");
     }
-  
-  
-    
+
+
+
   }
 
+}
+
+void filtra_status(int cont, struct tarefas *t){
+  int var_status,verifica =0;
+  printf("Escolha o status que voce deseja filtrar: clique 1 para tarefa completa, clique 2 para tarefa em andamento e clique 3 para tarefa nao iniciada ");
+  scanf("%d",&var_status);
+  limpa_buffer();
+  if(var_status>=1 && var_status<=3){
+
+    printf("Filtrar tarefa com status atual em: %d\n\n",var_status);
+    int erro=-1;
+    if(cont == 0){
+        printf("Nao ha tarefas registradas.\n\n");
+    }
+    else{
+    for(int i =0; i<cont;i++){
+        if(t[i].status == var_status){
+        verifica ++;
+        printf("Tarefa %d\n", i+1);
+        printf("Nivel de prioridade: %d\n",t[i].prioridade);
+        printf("Categoria: %s\n",t[i].categoria );
+        printf("Descricao: %s\n",t[i].descricao);
+        printf("Status: %d\n\n",t[i].status);
+        }
+        else if (i == cont -1 && verifica == 0 ){
+        erro =1;
+
+        }
+
+    }
+        if(erro == 1){
+        printf("nao existem tarefas com essa prioridade.\n\n");
+        }
+
+
+
+    }
+  }
+    
+  else{
+    printf("Opcao invalida\n\n");
+  }
 }
 
 
