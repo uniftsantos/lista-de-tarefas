@@ -38,7 +38,7 @@ void le_valores(struct tarefas *armazena) {
     scanf("%[^\n]", armazena->descricao);
     limpa_buffer();
 
-  
+
   do {
       printf("Escolha o status da tarefa:\n");
       printf("Digite 1 para tarefa completa\n");
@@ -53,7 +53,7 @@ void le_valores(struct tarefas *armazena) {
   limpa_buffer();
 
   armazena->status = var_status;
-  
+
 
 
 }
@@ -124,7 +124,7 @@ void listar(int cont, struct tarefas *t){
 }
 
 void alterar(int posicao,int cont, struct tarefas *t){
-  
+
 int var_status;
   char *p_posicao, s_posicao[100];
   fgets(s_posicao, sizeof(s_posicao), stdin);
@@ -158,10 +158,10 @@ int var_status;
           printf("Digite a prioridade de 1 a 10: ");
           scanf("%d", &var_prioridade);
 
-          if(var_prioridade < 0 || var_prioridade > 10){
-              printf("Input Invalido. Entre com um valor entre 0 e 10\n");
+          if(var_prioridade < 1 || var_prioridade > 10){
+              printf("Input Invalido. Entre com um valor entre 1 e 10\n");
           }
-      } while (var_prioridade < 0 || var_prioridade > 10);
+      } while (var_prioridade < 1 || var_prioridade > 10);
 
       t[posicao - 1].prioridade = var_prioridade;
       printf("Prioridade alterada com sucesso.\n\n");
@@ -245,7 +245,7 @@ void filtra_prioridade(int cont, struct tarefas *t){
 
   }
 
-}
+};
 
 void filtra_status(int cont, struct tarefas *t){
   int var_status,verifica =0;
@@ -276,18 +276,54 @@ void filtra_status(int cont, struct tarefas *t){
 
     }
         if(erro == 1){
-        printf("nao existem tarefas com essa prioridade.\n\n");
+        printf("nao existem tarefas com esse status.\n\n");
         }
 
 
 
     }
   }
-    
+
   else{
     printf("Opcao invalida\n\n");
   }
+};
+
+void filtra_categoria(int cont, struct tarefas *t){
+  int verifica=0,erro=1;
+  char categ[100];
+  fgets(categ, sizeof(categ), stdin);
+  categ[strcspn(categ, "\n")] = '\0';
+
+  //scanf( "%s", categ);
+  //limpa_buffer();
+  printf("\n Filtrar por %s\n\n",categ);
+  //printf(s_posicao);
+  if(cont == 0){
+    printf("Nao ha tarefas registradas.\n\n");
+  }
+  else{
+  for(int i =0; i<cont;i++){
+    if(strcmp(t[i].categoria, categ) == 0){
+      verifica ++;
+      printf("Tarefa %d\n", i+1);
+      printf("Nivel de prioridade: %d\n",t[i].prioridade);
+      printf("Categoria: %s\n",t[i].categoria );
+      printf("Descricao: %s\n",t[i].descricao);
+      printf("Status: %d\n\n",t[i].status);
+      erro=0;
+    }
+  }
+    if(erro == 1){
+      printf("nao existem tarefas com essa prioridade.\n\n");
+    }
+
+
+
+  }
+  
 }
+
 
 
 //Funcao que lista as tarefas e suas informacoes para o usuario. Utiliza um laco for com a variavel "x" para iterar sobre a lista de struct, e assim, fornece ao usuario todas as tarefas que estão registradas de maneira

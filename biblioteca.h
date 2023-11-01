@@ -36,4 +36,6 @@ void alterar(int posicao,int cont, struct tarefas *t);
 void filtra_prioridade(int cont, struct tarefas *t);
 
 void filtra_status(int cont, struct tarefas *t);
+
+void filtra_categoria(int cont, struct tarefas *t);
 #endif //UNTITLED_BIBLIOTECA_H
