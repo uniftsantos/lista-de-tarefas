@@ -24,8 +24,9 @@ int main() {
         printf(" 4 - Alterar tarefa: \n");
         printf(" 5 - Filtra tarefa por prioridade: \n");
         printf(" 6 - Filtra tarefa por status: \n");
-        printf(" 7 - Filtra tarfea por categoria: \n");
-        printf(" 8 - Sair\n");
+        printf(" 7 - Filtra tarefa por categoria: \n");
+        printf(" 8 - Filtra tarefa por prioridade e categoria: \n");
+        printf(" 9 - Sair\n");
         printf("Digite o numero da opcao que deseja usar: \n");
 
         //Funcao do menu de tarefas, roda em while infinito mostrando o menu para o usuario printando as funcoes disponiveis, ate o usuario optar por sair.
@@ -79,22 +80,28 @@ int main() {
         }
         else if(opcao == 5){
           printf("Voce entrou na funcao filtrar tarefa por prioridade.\n");
-          printf("Entre o numero da prioridade que deseja alterar : \n");
+          //printf("Entre com o numero da prioridade da tarefa : \n");
           filtra_prioridade(cont,t);
         }
         else if(opcao == 6){
           printf("Voce entrou na funcao filtrar tarefa por status.\n");
-          printf("Entre com o numero do status da tarefa: \n");
+          //printf("Entre com o numero do status da tarefa: \n");
           filtra_status(cont,t);
         }
         else if(opcao == 7){
           printf("Voce entrou na funcao filtrar tarefa por categoria.\n");
-          printf("Digite a categoria da tarefa: \n");
+          
           filtra_categoria(cont,t);
 
         }
+        else if(opcao == 8){
+          printf("Voce entrou na funcao filtrar tarefa por prioridade e categoria.\n");
+          filtra_prioridade_categoria(cont,t);
+          
 
-        else if (opcao == 8) {
+        }
+
+        else if (opcao == 9) {
             escreve_binario(t, cont);
             printf("Saindo do programa");
             break;

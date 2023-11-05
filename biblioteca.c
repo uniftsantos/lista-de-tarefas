@@ -114,11 +114,20 @@ void listar(int cont, struct tarefas *t){
   else{
     printf("Lista de tarefas\n\n");
     for(int x=0;x<cont;x++){
-        printf("Tarefa %d\n", x+1);
-        printf("Nivel de prioridade: %d\n",t[x].prioridade);
-        printf("Categoria: %s\n",t[x].categoria );
-        printf("Descricao: %s\n",t[x].descricao);
-        printf("Status: %d\n\n",t[x].status);
+      printf("Tarefa %d\n", x+1);
+      printf("Nivel de prioridade: %d\n",t[x].prioridade);
+      printf("Categoria: %s\n",t[x].categoria );
+      printf("Descricao: %s\n",t[x].descricao);
+      if(t[x].status == 1){
+        printf("Status: Tarefa Completa!\n\n");
+      }
+      else if(t[x].status == 2){
+      printf("Status: Tarefa em andamento!\n\n");
+      }
+      else{
+        printf("Status: Tarefa nao iniciada!\n\n");
+      }
+        
     }
   }
 }
@@ -229,7 +238,15 @@ void filtra_prioridade(int cont, struct tarefas *t){
       printf("Nivel de prioridade: %d\n",t[i].prioridade);
       printf("Categoria: %s\n",t[i].categoria );
       printf("Descricao: %s\n",t[i].descricao);
-      printf("Status: %d\n\n",t[i].status);
+      if(t[i].status == 1){
+        printf("Status: Tarefa Completa!\n\n");
+      }
+      else if(t[i].status == 2){
+      printf("Status: Tarefa em andamento!\n\n");
+      }
+      else{
+        printf("Status: Tarefa nao iniciada!\n\n");
+      }
     }
     else if (i == cont -1 && verifica == 0 ){
       erro =1;
@@ -267,7 +284,15 @@ void filtra_status(int cont, struct tarefas *t){
         printf("Nivel de prioridade: %d\n",t[i].prioridade);
         printf("Categoria: %s\n",t[i].categoria );
         printf("Descricao: %s\n",t[i].descricao);
-        printf("Status: %d\n\n",t[i].status);
+          if(t[i].status == 1){
+            printf("Status: Tarefa Completa!\n\n");
+          }
+          else if(t[i].status == 2){
+          printf("Status: Tarefa em andamento!\n\n");
+          }
+          else{
+            printf("Status: Tarefa nao iniciada!\n\n");
+          }
         }
         else if (i == cont -1 && verifica == 0 ){
         erro =1;
@@ -292,6 +317,7 @@ void filtra_status(int cont, struct tarefas *t){
 void filtra_categoria(int cont, struct tarefas *t){
   int verifica=0,erro=1;
   char categ[100];
+  printf("Digite a categoria da tarefa: \n");
   fgets(categ, sizeof(categ), stdin);
   categ[strcspn(categ, "\n")] = '\0';
 
@@ -310,9 +336,68 @@ void filtra_categoria(int cont, struct tarefas *t){
       printf("Nivel de prioridade: %d\n",t[i].prioridade);
       printf("Categoria: %s\n",t[i].categoria );
       printf("Descricao: %s\n",t[i].descricao);
-      printf("Status: %d\n\n",t[i].status);
+      if(t[i].status == 1){
+        printf("Status: Tarefa Completa!\n\n");
+      }
+      else if(t[i].status == 2){
+      printf("Status: Tarefa em andamento!\n\n");
+      }
+      else{
+        printf("Status: Tarefa nao iniciada!\n\n");
+      }
       erro=0;
     }
+  }
+    if(erro == 1){
+      printf("nao existem tarefas com essa prioridade.\n\n");
+    }
+
+
+
+  }
+  
+}
+
+void filtra_prioridade_categoria(int cont, struct tarefas *t){
+  int var_prioridade,verifica = 0;
+  printf("Digite a prioridade que voce deseja filtrar: \n");
+  scanf("%d",&var_prioridade);
+  limpa_buffer();
+  
+  char categ[100];
+  printf("Digite a categoria da tarefa: \n");
+  fgets(categ, sizeof(categ), stdin);
+  categ[strcspn(categ, "\n")] = '\0';
+  
+  
+  printf("Filtrar tarefa em prioridade nota: %d e categoria : %s\n\n",var_prioridade,categ);
+  int erro=-1;
+  if(cont == 0){
+    printf("Nao ha tarefas registradas.\n\n");
+  }
+  else{
+  for(int i =0; i<cont;i++){
+    if(t[i].prioridade == var_prioridade && strcmp(t[i].categoria, categ) == 0 ){
+      verifica ++;
+      printf("Tarefa %d\n", i+1);
+      printf("Nivel de prioridade: %d\n",t[i].prioridade);
+      printf("Categoria: %s\n",t[i].categoria );
+      printf("Descricao: %s\n",t[i].descricao);
+      if(t[i].status == 1){
+        printf("Status: Tarefa Completa!\n\n");
+      }
+      else if(t[i].status == 2){
+      printf("Status: Tarefa em andamento!\n\n");
+      }
+      else{
+        printf("Status: Tarefa nao iniciada!\n\n");
+      }
+    }
+    else if (i == cont -1 && verifica == 0 ){
+      erro = 1;
+
+    }
+
   }
     if(erro == 1){
       printf("nao existem tarefas com essa prioridade.\n\n");
