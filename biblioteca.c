@@ -229,23 +229,36 @@ void filtra_prioridade(int cont, struct tarefas *t){
   int erro=-1;
   if(cont == 0){
     printf("Nao ha tarefas registradas.\n\n");
+    
   }
   else{
+  FILE *f = fopen("prioridades.txt", "wb");
+  fprintf(f, "Filtrar tarefas em prioridade nota: %d \n\n",var_prioridade);
   for(int i =0; i<cont;i++){
     if(t[i].prioridade == var_prioridade){
       verifica ++;
+      fprintf(f,"Tarefa %d\n", i+1);
+      fprintf(f,"Nivel de prioridade: %d\n",t[i].prioridade);
+      fprintf(f,"Categoria: %s\n",t[i].categoria);
+      fprintf(f,"Descricao: %s\n",t[i].descricao);
+
+
+      
       printf("Tarefa %d\n", i+1);
       printf("Nivel de prioridade: %d\n",t[i].prioridade);
       printf("Categoria: %s\n",t[i].categoria );
       printf("Descricao: %s\n",t[i].descricao);
       if(t[i].status == 1){
         printf("Status: Tarefa Completa!\n\n");
+        fprintf(f,"Status: Tarefa Completa!\n\n");
       }
       else if(t[i].status == 2){
-      printf("Status: Tarefa em andamento!\n\n");
+        printf("Status: Tarefa em andamento!\n\n");
+        fprintf(f,"Status: Tarefa em andamento!\n\n");
       }
       else{
         printf("Status: Tarefa nao iniciada!\n\n");
+        fprintf(f,"Status: Tarefa nao iniciada!\n\n");
       }
     }
     else if (i == cont -1 && verifica == 0 ){
@@ -254,9 +267,12 @@ void filtra_prioridade(int cont, struct tarefas *t){
     }
 
   }
-    if(erro == 1){
-      printf("nao existem tarefas com essa prioridade.\n\n");
-    }
+    
+  fclose(f);
+    
+  if(erro == 1){
+    printf("nao existem tarefas com essa prioridade.\n\n");
+  }
 
 
 
