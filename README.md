@@ -1,1 +1,2 @@
 # lista-de-tarefas
+O código serve para cadastar tarefas novas, registrar o nível de prioridade, categoria e descrição das tarefas.Todas as alterações feitas pelo usuário serão enviadas para  um arquivo binaário, para que fiquem salvas. Além disso, Implementei funções filtrar as tarefas de acordo como usuário deseja e esse filtro é salvos em arquivos txt, que você consegue vizualizar facilmente e as informações estarão salvas. 
