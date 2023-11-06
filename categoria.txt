@@ -1,0 +1,15 @@
+
+ Filtra tarefas com a categoria : carro 
+
+Tarefa 3
+Nivel de prioridade: 9
+Categoria: carro
+Descricao: fazer revisao
+Status: Tarefa nao iniciada!
+
+Tarefa 4
+Nivel de prioridade: 10
+Categoria: carro
+Descricao: a
+Status: Tarefa em andamento!
+
