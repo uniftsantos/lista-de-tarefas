@@ -1,14 +1,2 @@
-Filtrar tarefas em prioridade nota: 10 
-
-Tarefa 1
-Nivel de prioridade: 10
-Categoria: escola
-Descricao: estudar para prova
-Status: Tarefa nao iniciada!
-
-Tarefa 2
-Nivel de prioridade: 10
-Categoria: faculdad
-Descricao: estudapar para calculo
-Status: Tarefa em andamento!
+Filtrar tarefas em prioridade nota: 3 
 
