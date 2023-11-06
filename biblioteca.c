@@ -220,6 +220,10 @@ int var_status;
 
 }
 
+/*na funcao filtra prioridade, categoria e filtra prioridade e categoria as informaçoes serão passadas para um arquivo txt, utilizando o comando FILE*f, e utilizo e fprintf
+para que as informcaçoes sejam escritas no arquivo txt. e utilizacao da variavel verifica, que serve para me ajudar na hora de printar quando nao existem tarefas de acordo 
+com o filtro que o usuario deseja, esse verifica vai ser usado nas outras funcoes de filtrar*/
+
 void filtra_prioridade(int cont, struct tarefas *t){
   int var_prioridade,verifica =0;
   printf("Digite a prioridade que voce deseja filtrar: ");
