@@ -132,6 +132,9 @@ void listar(int cont, struct tarefas *t){
   }
 }
 
+//Funcao alterar serve para alterar alguma informacao na tarefa seja prioridade,categoria,descrição ou status. Utilizei um int para fazer uma verificação se for 1, ira 
+//alterar a prioridade se for 2 ira alterar a categoria, se for 3 ira alterar a descrição, e se for 4 ira alterar a categoria.
+
 void alterar(int posicao,int cont, struct tarefas *t){
 
 int var_status;
